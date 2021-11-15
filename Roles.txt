@@ -1,0 +1,26 @@
+Roles and Responsibilities in SonarQube Server
+---------------------------------------------
+
+Install the SonarQube Server
+
+Configure Sonarqube Server Details in pom.xml
+
+Creating  Users / Configure LDAP Server
+
+Creating Groups
+
+Create the Quality Profiles as per Project requirement.
+
+Create the Quality Gates as per Project requirement.
+
+
+Roles and Responsibilities in Nexus Server
+-----------------------------------------
+
+Install the Nexus Server
+
+Create the Repositories (Maven2 - hosted,Proxy and group, Docker, Node JS)
+
+Configure Nexus Repository Details in pom.xml and credentials in settings.xml
+
+Creating  Users / Configure LDAP Server

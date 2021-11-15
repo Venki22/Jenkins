@@ -1,0 +1,30 @@
+node{
+    
+    def MAVEN_HOME = "C:/Progra~1/apache-maven-3.6.1"
+    def tomcatWeb = "C:/tomcat9/webapps"
+    def tomcatBin = "C:/Progra~1/apache-maven-3.6.1/bin"
+    def targetwar = "C:/ProgramData/Jenkins/.jenkins/workspace/Pipelineproject-sample/target"
+    def tomcatStatus = ''
+    stage('SCM Checkout'){
+        git branch: 'development', url: 'https://github.com/Venki22/maven-web-application.git'
+    }
+    stage('Compile-Package-creae-war-file'){
+        // Get maven home path
+	bat "${MAVEN_HOME}/bin/mvn clean package"
+            }
+    stage('ExecuteSonarQube Report'){
+	    bat "${MAVEN_HOME}/bin/mvn sonar:sonar"
+	}
+	stage('Upload artifacts into nexus repository'){
+	    bat "${MAVEN_HOME}/bin/mvn deploy"
+	}
+    stage('Deploy to Tomcat'){
+	bat "copy ${targetwar}/maven-web-application.war ${tomcatWeb}/"
+	}
+    stage ('start Tomcat Server'){
+	sleep(time:5,unit:"SECONDS")
+	bat "${tomcatBin}/startup.bat"
+	sleep(time:100,unit:"SECONDS")
+	}
+	
+}
